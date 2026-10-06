@@ -1,0 +1,29 @@
+HAFTA 2 - EK GÖREV (KALİ): PAROLA KIRMA
+SORULAR VE CEVAPLAR
+
+Öğrenci No: 232923051
+
+
+1) Aynı sekiz parolanın MD5, SHA-256 ve bcrypt özetlerini kırdınız. Üçünde de süre ve deneme hızı nasıldı?
+
+MD5 ve SHA-256 neredeyse anında kırıldı, Adım 4'teki benchmark'ta ikisi de saniyede milyonlarca deneme yapıyordu. bcrypt aynı sekiz parolayı kırmak için gözle görülür şekilde daha uzun sürdü, çünkü benchmark'ta saniyede sadece yüzlerce deneme yapılabiliyordu.
+
+
+2) MD5 ile SHA-256 arasında kırma kolaylığı bakımından fark var mıydı? SHA-256 neden hâlâ yetersiz?
+
+İkisi de aynı hızda, anında kırıldı; pratik bir fark yoktu. SHA-256 kriptografik olarak daha güçlü olsa da, MD5 gibi hızlı ve tuzsuz çalıştığı için saldırgan sözlükteki her parolayı saniyede milyonlarca kez deneyebiliyor; parola saklamada hız değil yavaşlık önemlidir.
+
+
+3) bcrypt'in yavaşlığı normal kullanıcıya ne kadar zaman kaybettirir, saldırgana ne kadar? Bu neden iyi bir denge?
+
+Normal kullanıcıya tek girişte kaybı milisaniyeler mertebesinde, fark edilmez. Saldırgana ise milyonlarca denemeyi çarptığında saatler/günler ekler, çünkü saniyede sadece yüzlerce deneme yapabilir. Bu yüzden günlük kullanımı etkilemeden toplu kırma saldırısını pratik olarak imkânsız hale getirir.
+
+
+4) Gerçek bir sızıntıda iki kullanıcının MD5 özeti aynı çıksa bu ne anlama gelir? Tuz bunu nasıl önler?
+
+İki kullanıcının özeti aynıysa aynı parolayı kullanıyorlar demektir, çünkü tuzsuz özette aynı girdi hep aynı çıktıyı verir. Tuz, her kullanıcıya rastgele ek bir değer ekleyip parolayla birlikte özetleyerek aynı parolaların bile farklı özetler üretmesini sağlar, böylece özetler karşılaştırılarak parola tahmin edilemez.
+
+
+İSTEĞE BAĞLI: john ile karşılaştırma
+
+john komutu da aynı MD5 listesini kırdı; hashcat GPU'yu kullanıp sonucu hızlıca listelerken, john sonuçları ayrı bir --show komutuyla göstermek gerekiyordu. İkisi de aynı parolaları buldu, yalnızca komut sözdizimi ve çıktı biçimi farklıydı.

@@ -1,0 +1,29 @@
+HAFTA 3 - EK GÖREV (KALİ): TLS TARAMA VE ORTADAKİ ADAM
+SORULAR VE CEVAPLAR
+
+Öğrenci No: 232923051
+
+
+1) Güçlü sunucunuz hangi TLS sürümünü ve şifreyi seçti?
+
+Güçlü sunucu yalnızca TLS 1.3 kabul etti ve şifre olarak TLS_AES_256_GCM_SHA384'ü tercih etti. Bu değer gorev2_istemci.py çıktısıyla da uyuşuyor.
+
+
+2) Güçlü ve zayıf sunucu taraması arasındaki fark neydi; yönetici olsanız neyi kapatırdınız?
+
+Güçlü sunucu sadece TLS 1.3 kabul ederken zayıf sunucu TLS 1.2'yi de kabul etti. Yönetici olsam SSL 2/3, TLS 1.0 ve 1.1'i kapatırdım, çünkü bu sürümlerin bilinen açıkları var ve artık güvenli sayılmıyor.
+
+
+3) mitmproxy'nin CA'sını eklemeden önce neden uyarı vardı, sonra neden yoktu?
+
+mitmproxy sahte bir sertifika sundu ve bunu imzalayan kök CA Firefox'ta güvenilir olmadığı için uyarı verdi. CA'yı güvenilen listeye ekleyince sahte sertifikalar doğrulandı ve uyarı kalmadı. Yani bir kök CA'ya güvenmek, onun imzaladığı her sertifikaya güvenmek demektir.
+
+
+4) Bu saldırı gerçek bankanızda neden kolayca yapılamaz?
+
+Saldırganın güvenilen bir CA'ya sahip olması gerekir; labda bunu CA'yı kendimiz tarayıcıya ekleyerek sağladık, gerçekte ise kurbanın tarayıcısına kendi CA'nı ekleyemezsin. Ayrıca CAA kayıtları hangi CA'nın sertifika verebileceğini sınırlar ve Sertifika Şeffaflığı sayesinde sahte sertifika hemen fark edilir.
+
+
+ONAY
+[ ] Firefox proxy ayarını kapattım.
+[ ] mitmproxy CA'sını sildim.
