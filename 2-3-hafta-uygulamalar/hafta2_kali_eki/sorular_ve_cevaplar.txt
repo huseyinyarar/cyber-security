@@ -1,7 +1,7 @@
 HAFTA 2 - EK GÖREV (KALİ): PAROLA KIRMA
 SORULAR VE CEVAPLAR
 
-Öğrenci No: 232923051
+
 
 
 1) Aynı sekiz parolanın MD5, SHA-256 ve bcrypt özetlerini kırdınız. Üçünde de süre ve deneme hızı nasıldı?
